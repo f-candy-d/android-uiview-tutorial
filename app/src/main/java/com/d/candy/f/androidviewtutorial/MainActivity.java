@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.d.candy.f.androidviewtutorial.RecyclerView.RecyclerViewFragment;
+import com.d.candy.f.androidviewtutorial.SQLite.SQLiteFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,18 +88,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_recycler_view) {
             switchFragments(new RecyclerViewFragment());
+        } else if(id == R.id.nav_sqlite) {
+            switchFragments(new SQLiteFragment());
         }
-//        else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

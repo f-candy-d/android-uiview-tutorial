@@ -27,10 +27,10 @@
             android:id="@+id/nav_recycler_view"
             android:icon="@drawable/ic_view_agenda"
             android:title="RecyclerView" />
-            <!--<item-->
-            <!--android:id="@+id/nav_gallery"-->
-            <!--android:icon="@drawable/ic_menu_gallery"-->
-            <!--android:title="Gallery" />-->
+            <item
+            android:id="@+id/nav_sqlite"
+            android:icon="@drawable/ic_storage"
+            android:title="SQLite" />
             <!--<item-->
             <!--android:id="@+id/nav_slideshow"-->
             <!--android:icon="@drawable/ic_menu_slideshow"-->
