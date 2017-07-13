@@ -39,7 +39,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="insert"
+        android:text="insert entry"
         android:id="@+id/button_sqlite_insert"
         android:layout_below="@+id/layout_sqlite_input_data"
         android:layout_centerHorizontal="true"/>
