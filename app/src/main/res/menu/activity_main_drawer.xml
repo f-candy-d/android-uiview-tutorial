@@ -31,6 +31,10 @@
             android:id="@+id/nav_sqlite"
             android:icon="@drawable/ic_storage"
             android:title="SQLite" />
+                <item
+                    android:id="@+id/nav_staggered_grid_recycler_view"
+                    android:icon="@drawable/ic_view_list"
+                    android:title="RecyclerView(StaggeredGrid)"/>
             <!--<item-->
             <!--android:id="@+id/nav_slideshow"-->
             <!--android:icon="@drawable/ic_menu_slideshow"-->

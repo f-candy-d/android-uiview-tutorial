@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.d.candy.f.androidviewtutorial.RecyclerView.RecyclerViewFragment;
+import com.d.candy.f.androidviewtutorial.RecyclerViewStaggeredGrid.RecyclerViewStaggeredGridFragment;
 import com.d.candy.f.androidviewtutorial.SQLite.SQLiteFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity
             switchFragments(new RecyclerViewFragment());
         } else if(id == R.id.nav_sqlite) {
             switchFragments(new SQLiteFragment());
+        } else if (id == R.id.nav_staggered_grid_recycler_view) {
+            switchFragments(new RecyclerViewStaggeredGridFragment());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
