@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by daichi on 7/13/17.
  */
@@ -26,7 +28,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + MyDBContract.FirstTable.TABLE_NAME + " (" +
                     MyDBContract.FirstTable.COLUMN_NAME_ID + INT_TYPE + PRIMARY_KEY_OPTION + COMMA_SEP +
-                    MyDBContract.FirstTable.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
+                    MyDBContract.FirstTable.COLUMN_NAME_TEXT + TEXT_TYPE + COMMA_SEP +
                     MyDBContract.FirstTable.COLUMN_NAME_QUANTITY + INT_TYPE + " )";
 
     public MySQLiteOpenHelper(Context context) {
@@ -45,21 +47,21 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     /**
      * Delete a latest inserted data
      */
-    public void delete_latest_entry() {
+    public boolean deleteLatestEntry() {
         // count entries
         String select = "SELECT * FROM "+MyDBContract.FirstTable.TABLE_NAME+";";
         Cursor cursor = getReadableDatabase().rawQuery(select, null);
         int count = cursor.getCount();
         cursor.close();
         if(0<count) {
-            Log.d(TAG, "delete_latest_entry() : deleted at id="+String.valueOf(count));
             // Delete a row
             final String SQL_DELETE_ROW =
                     "DELETE FROM "+MyDBContract.FirstTable.TABLE_NAME +
                             " WHERE "+MyDBContract.FirstTable.COLUMN_NAME_ID+" = "+String.valueOf(count);
             getWritableDatabase().execSQL(SQL_DELETE_ROW);
+            return true;
         } else {
-            Log.d(TAG, "delete_latest_entry() : no data exists!");
+            return false;
         }
     }
 
@@ -72,35 +74,33 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         long id = db.insert(MyDBContract.FirstTable.TABLE_NAME, null, entity);
         db.close();
-        Log.d(TAG, "insert() : id-> "+String.valueOf(id));
         return id;
     }
 
     /**
      * Show all data in the database
      */
-    public void showAll() {
-        Log.d(TAG, "showAll()");
-        Log.d(TAG, "-----------------------------------");
+    public ArrayList<ContentValues> getAll() {
+        ArrayList<ContentValues> values = new ArrayList<>();
         // Select all rows in the database
         String select = "SELECT * FROM "+MyDBContract.FirstTable.TABLE_NAME+";";
         Cursor cursor = getReadableDatabase().rawQuery(select, null);
 
         boolean isEOF = cursor.moveToFirst();
-        int count = 0;
         while (isEOF) {
-            ++count;
-            String title = cursor.getString(cursor.getColumnIndexOrThrow(MyDBContract.FirstTable.COLUMN_NAME_TITLE));
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(MyDBContract.FirstTable.COLUMN_NAME_TEXT));
             int id = cursor.getInt(cursor.getColumnIndexOrThrow(MyDBContract.FirstTable.COLUMN_NAME_ID));
             int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(MyDBContract.FirstTable.COLUMN_NAME_QUANTITY));
 
-            Log.d(TAG, "id-> "+String.valueOf(id)+" | title-> "+title+" | quantity-> "+String.valueOf(quantity));
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MyDBContract.FirstTable.COLUMN_NAME_TEXT, title);
+            contentValues.put(MyDBContract.FirstTable.COLUMN_NAME_QUANTITY, quantity);
+            contentValues.put(MyDBContract.FirstTable.COLUMN_NAME_ID, id);
+            values.add(contentValues);
 
             isEOF = cursor.moveToNext();
         }
-        Log.d(TAG, String.valueOf(count)+" data are exists");
-        Log.d(TAG, "-----------------------------------");
-
         cursor.close();
+        return values;
     }
 }

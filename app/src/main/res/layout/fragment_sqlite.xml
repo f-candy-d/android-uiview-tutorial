@@ -1,61 +1,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:gravity="center"
-             tools:context="com.d.candy.f.androidviewtutorial.SQLite.SQLiteFragment">
+                tools:context="com.d.candy.f.androidviewtutorial.SQLite.SQLiteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:text="Look Your Logcat !"
-        android:id="@+id/text_sqlite_message"
-        android:layout_centerHorizontal="true"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        android:id="@+id/layout_sqlite_input_data"
-        android:gravity="center"
-        android:layout_below="@+id/text_sqlite_message">
-
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/num_picker_sqlite"/>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_text_sqlite"
-            android:hint="input any data here..."/>
-
-    </LinearLayout>
     <Button
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="insert entry"
         android:id="@+id/button_sqlite_insert"
-        android:layout_below="@+id/layout_sqlite_input_data"
-        android:layout_centerHorizontal="true"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="show all"
-        android:id="@+id/button_sqlite_show_all"
-        android:layout_below="@+id/button_sqlite_insert"
         android:layout_centerHorizontal="true"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="delete latest entry"
         android:id="@+id/button_sqlite_delete"
-        android:layout_below="@+id/button_sqlite_show_all"
+        android:layout_below="@+id/button_sqlite_insert"
         android:layout_centerHorizontal="true"/>
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="4dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:padding="8dp"
+            android:id="@+id/text_sqlite_logcat"
+            android:background="#4527A0"
+            android:textColor="@color/colorAccent"/>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>

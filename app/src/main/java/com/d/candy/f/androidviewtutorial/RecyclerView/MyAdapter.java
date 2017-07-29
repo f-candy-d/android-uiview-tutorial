@@ -16,20 +16,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView mText;
+        private final View mDividerTop;
+        private final View mDividerBottom;
 
-        public ViewHolder(View content_root) {
-            super(content_root);
+        public ViewHolder(View itemView) {
+            super(itemView);
 
-            mText = (TextView) content_root.findViewById(R.id.recycler_view_item_text);
+            mDividerTop = itemView.findViewById(R.id.item_divider_top);
+            mDividerBottom = itemView.findViewById(R.id.item_divider_bottom);
+        }
+
+        public void bind(final int position) {
+            if (position == 0) {
+                mDividerTop.setVisibility(View.INVISIBLE);
+                mDividerBottom.setVisibility(View.INVISIBLE);
+            } else {
+                mDividerTop.setVisibility(View.VISIBLE);
+                mDividerBottom.setVisibility(View.INVISIBLE);
+            }
         }
     }
 
-    private final String[] mData;
     private final int mNumData;
 
-    public MyAdapter(String[] data, int numData) {
-        mData = data;
+    public MyAdapter(int numData) {
         mNumData = numData;
     }
 
@@ -40,9 +50,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View content_root = LayoutInflater.from(parent.getContext())
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_view_item, parent, false);
-        return new ViewHolder(content_root);
+        return new ViewHolder(itemView);
     }
 
     /**
@@ -50,6 +60,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mText.setText(mData[position%mData.length]);
+        holder.bind(position);
     }
 }

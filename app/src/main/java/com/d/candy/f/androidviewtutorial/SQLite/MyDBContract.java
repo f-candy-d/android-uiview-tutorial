@@ -18,7 +18,7 @@ public class MyDBContract {
     public static class FirstTable {
         public static final String TABLE_NAME = "first_table";
         public static final String COLUMN_NAME_ID = "id";
-        public static final String COLUMN_NAME_TITLE = "title";
+        public static final String COLUMN_NAME_TEXT = "title";
         public static final String COLUMN_NAME_QUANTITY = "quantity";
     }
 }

@@ -29,17 +29,9 @@ public class RecyclerViewFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        String[] data = new String[] {
-                "Android",
-                "AQUARIUM OUSUKE",
-                "Nexus5",
-                "Summer cup noodle",
-                "IRON MAN"
-        };
-
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MyAdapter(data, 100));
+        recyclerView.setAdapter(new MyAdapter(50));
 
         return root;
     }
